@@ -1,0 +1,454 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="ESSE">
+  
+  
+  
+  
+    <meta name="description" content="HTTPHTTP是一个很小的原始HTTP客户端 - 而且简单方便。它提供了一种发送请求和读取响应的简单方法 - 所以请开发人员。
+了解HTTP的最佳方式是通过示例。
+简单的GET12345678910111213141516171819HttpRequest httpRequest = HttpRequest.get(&quot;http://jodd.org&quot;);    Http...">
+  
+  <title>jodd [ Esse's Blog ]</title>
+  
+  
+    <link rel="shortcut icon" href="/hollow.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/12/20/日志/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        springboot 项目中控制台打印日志以及每天生成日志文件
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/12/14/hello-world/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Hello World
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onclick="openUserCard()">
+          <img id="avatar" src="https://avatars1.githubusercontent.com/u/26178074?s=400&u=c0fbc4550384ad97c625c4bb61cd3a744eb1c066&v=4">
+          <div id="homelink">Esse's Blog</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/ESSEdian">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  
+
+  <article id="post">
+    <h1>jodd</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2018-12-20</span>
+      
+        <span id="post-title-updated">修改于 2018-12-20</span>
+      
+      
+      
+    </p>
+    
+    <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>HTTP是一个很小的原始HTTP客户端 - 而且简单方便。它提供了一种发送请求和读取响应的简单方法 - 所以请开发人员。</p>
+<p>了解HTTP的最佳方式是通过示例。</p>
+<h2 id="简单的GET"><a href="#简单的GET" class="headerlink" title="简单的GET"></a>简单的GET</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">HttpRequest httpRequest = HttpRequest.get(&quot;http://jodd.org&quot;);</span><br><span class="line">    HttpResponse response = httpRequest.send();</span><br><span class="line"></span><br><span class="line">    System.out.println(response);</span><br><span class="line"></span><br><span class="line">所有HTTP类都提供流畅的界面，因此您可以编写：</span><br><span class="line"></span><br><span class="line">    HttpResponse response = HttpRequest.get(&quot;http://jodd.org&quot;).send();</span><br><span class="line"></span><br><span class="line">    System.out.println(response);</span><br><span class="line">You can build the request step by step:</span><br><span class="line"></span><br><span class="line">    HttpRequest request = new HttpRequest();</span><br><span class="line">    request</span><br><span class="line">        .method(&quot;GET&quot;)</span><br><span class="line">        .protocol(&quot;http&quot;)</span><br><span class="line">        .host(&quot;srv&quot;)</span><br><span class="line">        .port(8080)</span><br><span class="line">        .path(&quot;/api/jsonws/user/get-user-by-id&quot;);</span><br></pre></td></tr></table></figure>
+<p>##　阅读回应</p>
+<p>发送HTTP请求时，整个响应将存储在HttpResponse实例中。您可以对各种内容使用响应。你可以得到statusCode()或 statusPhrase(); 或任何标题属性。</p>
+<p>最重要的是如何阅读收到的回复正文。您可以使用以下方法之一：</p>
+<ul>
+<li>body()- 原始内容，始终采用ISO-8859-1编码方式。</li>
+<li>bodyText()- 正文文本，即由Content-Type标题指定的字符串编码。</li>
+<li>bodyBytes() - 将原始体返回为字节数组，因此可以保存下载的文件。</li>
+</ul>
+<p><code>使用的字符编码bodyText()是响应头中的一个集合。如果响应未在其标题中指定编码（但仅在HTML页面上），则必须charset() 在调用之前使用方法指定编码bodyText()。</code></p>
+<h2 id="查询参数"><a href="#查询参数" class="headerlink" title="查询参数"></a>查询参数</h2><p>查询参数可以在URL行中指定（但必须正确编码）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HttpResponse response = HttpRequest</span><br><span class="line">        .get(&quot;http://srv:8080/api/user/get-user-by-id?userId=10194&quot;)</span><br><span class="line">        .send();</span><br><span class="line">```        </span><br><span class="line">更好和推荐的方法是使用query()方法：</span><br></pre></td></tr></table></figure>
+<p>HttpResponse response = HttpRequest<br>        .get(“<a href="http://srv:8080/api/user/get-user-by-id&quot;" target="_blank" rel="noopener">http://srv:8080/api/user/get-user-by-id&quot;</a>)<br>        .query(“userId”, “10194”)<br>        .send();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">您可以使用query()每个参数，或在一次调用中传递许多参数（varargs）。您也可以提供Map&lt;String, String&gt;参数。</span><br><span class="line"></span><br><span class="line">注意：可以复制查询参数（以及标题和表单参数）。因此，它们在内部存储在一个数组中。使用方法 removeQuery删除一些参数，或重载方法替换参数。</span><br><span class="line"></span><br><span class="line">最后，您可以访问内部查询映射，它实际上包含所有参数：</span><br></pre></td></tr></table></figure></p>
+<p>Map&lt;String, Object[]&gt; httpParams = request.query();<br>    httpParams.put(“userId”, new String[] {“10194”});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 认证</span><br><span class="line">基本身份验证变得简单：</span><br></pre></td></tr></table></figure></p>
+<pre><code>request.basicAuthentication（“ user ”，“ password ”）;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">基于令牌的身份验证：</span><br></pre></td></tr></table></figure>
+<pre><code>request.tokenAuthentication（“ M4ORM .... ”）;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## POST和表单参数</span><br><span class="line">同理：</span><br></pre></td></tr></table></figure>
+<pre><code>HttpResponse response = HttpRequest
+    .post(&quot;http://srv:8080/api/jsonws/user/get-user-by-id&quot;)
+    .form(&quot;userId&quot;, &quot;10194&quot;)
+    .send();
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用form()方式query()与指定表单参数的方式相同。所说的一切都query()适用于form()。</span><br><span class="line"></span><br><span class="line">## 上传文件</span><br><span class="line">再次，它很简单：只需添加文件表单参数。这是一个真实的例子：</span><br></pre></td></tr></table></figure>
+<pre><code>HttpRequest httpRequest = HttpRequest
+    .post(&quot;http://srv:8080/api/dlapp/add-file-entry&quot;)
+    .form(
+        &quot;repositoryId&quot;, &quot;10178&quot;,
+        &quot;folderId&quot;, &quot;11219&quot;,
+        &quot;sourceFileName&quot;, &quot;a.zip&quot;,
+        &quot;mimeType&quot;, &quot;application/zip&quot;,
+        &quot;title&quot;, &quot;test&quot;,
+        &quot;description&quot;, &quot;Upload test&quot;,
+        &quot;changeLog&quot;, &quot;testing...&quot;,
+        &quot;file&quot;, new File(&quot;d:\\a.jpg.zip&quot;)
+    );
+
+HttpResponse httpResponse = httpRequest.send();
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## 监控上传进度</span><br><span class="line">上传大文件时，监控进度很有帮助。为此，您可以HttpProgressListener像这样使用：</span><br></pre></td></tr></table></figure>
+<pre><code>HttpResponse response = HttpRequest
+    .post(&quot;http://localhost:8081/hello&quot;)
+    .form(&quot;file&quot;, file)
+    .monitor(new HttpProgressListener() {
+        @Override
+        public void transferred(long len) {
+            System.out.println(len/size);
+        }
+    })
+    .send();
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">在上载开始之前，HttpProgressListener计算callbackSize - 将传输的块的大小（以字节为单位）。默认情况下，此大小等于总大小的1％。而且，它永远不会少于512字节。</span><br><span class="line"></span><br><span class="line">HttpProgressListener包含size具有请求总大小的内部字段。请注意，这是整个请求的大小，而不仅仅是文件！这是要发送的实际字节数，并且总是比文件大小稍大（由于协议开销）。</span><br><span class="line"></span><br><span class="line">## head</span><br><span class="line">使用方法添加或到达标头参数header()。一些常见的标头参数已经被定义为方法，因此你会发现 contentType()等等。</span><br><span class="line"></span><br><span class="line">有一些常用的快捷方法：</span><br><span class="line"></span><br><span class="line">contentTypeJson() - 指定JSON内容类型</span><br><span class="line">acceptJson() - 接受JSON内容。</span><br><span class="line"></span><br><span class="line">## GZipped内容</span><br><span class="line">只是unzip()回应。</span><br></pre></td></tr></table></figure>
+<pre><code>HttpResponse response = HttpRequest
+    .get(&quot;http://jodd.org&quot;)
+    .acceptEncoding(&quot;gzip&quot;)
+    .send();
+
+System.out.println(response.unzip());
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    </span><br><span class="line">该unzip()方法是安全的; 如果没有压缩响应，它不会失败。</span><br><span class="line"></span><br><span class="line">## 设置body</span><br><span class="line">您可以手动设置请求正文：</span><br></pre></td></tr></table></figure>
+<pre><code>HttpResponse response = HttpRequest
+    .get(&quot;http://srv:8080/api/jsonws/invoke&quot;)
+    .body(&quot;{&apos;a&apos;:1 23, &apos;b&apos;: &apos;hi&apos;}&quot;)
+    .basicAuthentication(&quot;test&quot;, &quot;test&quot;)
+    .send();
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">`设置主体会丢弃所有先前设置的form()参数。`</span><br><span class="line"></span><br><span class="line">## 字符集和编码</span><br><span class="line">默认情况下，查询和表单参数以UTF-8编码。这可以在全局JoddHttp或每个实例中进行更改：</span><br></pre></td></tr></table></figure>
+<pre><code>HttpResponse response = HttpRequest
+    .get(&quot;http://server/index.html&quot;)
+    .queryEncoding(&quot;CP1251&quot;)
+    .query(&quot;param&quot;, &quot;value&quot;)
+    .send();
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">您可以类似地设置表单编码。此外，表单发布在“Content-Type”标题中检测charset的值，如果存在，则将使用它。</span><br><span class="line"></span><br><span class="line">对于收到的内容，body()方法始终返回原始字符串（编码为ISO-8859-1）。要以可用的形式获取字符串，请使用方法 bodyText()。此方法使用“Content-Type”标头中提供的字符集并对正文字符串进行编码。</span><br><span class="line"></span><br><span class="line">## 重定向后</span><br><span class="line">默认情况下HttpRequest不遵循重定向响应。这可以通过设置来改变followRedirects(true)。现在遵循重定向响应。启用重定向后，原始URL将不会保留在请求对象中！</span><br><span class="line"></span><br><span class="line">## 异步发送</span><br><span class="line">当send()被调用时，程序块，直到接收到响应。通过使用sendAsync()发送的执行传递给Javas fork-join池，并将异步执行。方法返回CompletableFuture&lt;Response&gt;。</span><br><span class="line"></span><br><span class="line">## HTTP连接</span><br><span class="line">物理HTTP通信由HttpConnection接口封装。上send()，HTTP意志open()连接，如果尚未打开。连接由连接提供程序创建： HttpConnectionProvider。默认连接提供程序是基于套接字的，它总是返回一个新SocketHttpConnection实例 - 它只是包装Socket并打开它。</span><br><span class="line"></span><br><span class="line">HttpConnectionProvider基于默认实现，通常使用自定义。例如，您可以扩展SocketHttpConnectionProvider 和覆盖createSocket()方法以从某个池或具有不同超时的套接字返回套接字。</span><br><span class="line"></span><br><span class="line">或者，您甚至可以HttpConnection直接提供实例，而无需任何提供者。</span><br><span class="line"></span><br><span class="line">### socket</span><br><span class="line">如上所述，默认通信通过平原Socket。由于在发送数据之前调整套接字行为是一种常见的需求，因此以下是两个使用HTTP的方法。</span><br><span class="line"></span><br><span class="line">### SocketHttpConnection</span><br><span class="line">由于我们知道默认类型HttpConnection，我们可以在显式调用open()并转换它之后简单地获取实例：</span><br></pre></td></tr></table></figure>
+<pre><code>HttpRequest request = HttpRequest.get()...;
+request.open();
+SocketHttpConnection httpConnection =
+    (SocketHttpConnection) request.httpConnection();
+Socket socket = httpConnection.getSocket();
+socket.setSoTimeout(1000);
+...
+HttpResponse response = request.send();
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### SocketHttpConnectionProvider</span><br><span class="line">另一种方法是使用自定义的HttpConnectionProvider基础上SocketHttpConnectionProvider。所以你可以像这样创建自己的提供者：</span><br></pre></td></tr></table></figure>
+<pre><code>public class MyConnectionProvider extends SocketHttpConnectionProvider {
+    protected Socket createSocket(
+            SocketFactory socketFactory, String host, int port)
+            throws IOException {
+        Socket socket = super.createSocket(socketFactory, host, port);
+        socket.setSoTimeout(1000);
+        return socket;
+    }
+}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">现在您可以直接在open()方法中使用此提供程序：</span><br></pre></td></tr></table></figure>
+<pre><code>HttpConnectionProvider connectionProvider = new MyConnectionProvider（）; 
+... 
+HttpRequest request = HttpRequest.get（）...; 
+HttpResponse response = request.open（connectionProvider）.send（）;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果您希望连接提供程序成为所有通信的默认连接提供程序，只需将其分配给JoddHttp.httpConnectionProvider您，即可避免显式open()使用。</span><br><span class="line"></span><br><span class="line">## Keep-Alive</span><br><span class="line">默认情况下，所有连接都标记为已关闭，以保持服务器满意。 HTTP允许通过“保持活动”模式使用永久连接。在HttpConnection开口于第一请求，然后在通信会话重新使用; 如果不需要，袜子不会再次打开，因此可以重复使用。</span><br><span class="line"></span><br><span class="line">有几种方法可以做到这一点。最简单的方法如下：</span><br></pre></td></tr></table></figure>
+<pre><code>HttpRequest request = HttpRequest.get(&quot;http://jodd.org&quot;);
+HttpResponse response = request.connectionKeepAlive(true).send();
+
+// next request
+request = HttpRequest.get(&quot;http://jodd.org/jodd.css&quot;);
+response = request.keepAlive(response, true).send();
+
+...
+
+// last request
+request = HttpRequest.get(&quot;http://jodd.org/jodd.png&quot;);
+response = request.keepAlive(response, false).send();
+
+// optionally
+//response.close();
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">     </span><br><span class="line">此示例通过HttpConnection 相同的套接字（即相同的套接字）触发多个请求。当处于“保持活动”模式时，HTTP继续使用现有连接，同时关注服务器响应。如果服务器明确要求关闭连接， HTTP将关闭它，然后它将打开一个新连接以继续您的会话。你不必担心这一点，只需继续打电话keepAlive()，它会在后台神奇地为你做一切。只是不要忘记将false参数传递给最后一次调用，以指示服务器是最后一个连接，并且我们要在收到最后一个响应后关闭它。（如果由于某些原因服务器没有正确响应，您可以通过显式调用来关闭客户端的通信response.close()）。还有一件事 - 如果在此持久会话期间必须打开新连接（例如，保持活动最大计数器完成或超时到期），将使用相同的连接提供程序作为初始第一个连接。</span><br><span class="line"></span><br><span class="line">## 代理(Proxy)</span><br><span class="line">HttpConnectionProvider还允许您指定代理。只需为ProxyInfo实例提供有关已使用代理的信息（类型，地址，端口，用户名，密码）：</span><br></pre></td></tr></table></figure>
+<pre><code>SocketHttpConnectionProvider s = new SocketHttpConnectionProvider();
+s.useProxy(ProxyInfo.httpProxy(&quot;proxy_url&quot;, 1090, null, null));
+
+HttpResponse response = HttpRequest
+    .get(&quot;http://jodd.org/&quot;)
+    .withConnectionProvider(s)
+    .send();
+</code></pre><p><code>`</code></p>
+<font color="#00ffff" size="5">HTTP支持<strong>HTTP</strong>，<strong>SOCKS4</strong>和<strong>SOCKE5</strong>代理类型。</font>
+
+
+
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单的GET"><span class="toc-text">简单的GET</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询参数"><span class="toc-text">查询参数</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/12/20/日志/" class="prev">&larr; 上一篇 springboot 项目中控制台打印日志以及每天生成日志文件</a>
+  
+
+  
+
+  
+    <a href="/2018/12/14/hello-world/" class="next">下一篇 Hello World &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by ESSE using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="https://avatars1.githubusercontent.com/u/26178074?s=400&u=c0fbc4550384ad97c625c4bb61cd3a744eb1c066&v=4">
+    <p id="description">esse的个人博客</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/ESSEdian">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/Danliwoo">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="mailto:chenyang7818@gmail.com">
+        
+          M
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":1500000,"shuffle":true,"count":12};
+var unsplashConfig = {"gravity":"center"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
